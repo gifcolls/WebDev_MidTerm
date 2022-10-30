@@ -83,14 +83,14 @@ router.post("/details/:id", (req, res, next) => {
    *****************/
   let id = req.params.id
   let updatedProduct = product({
-  "_id": id,
+  "Productid": id,
   "Productname": req.body.Productname,
   "Description": req.body.Description,
   "Price": req.body.Price
 
   });
 
-  product.updateOne({_id: id}, updatedProduct, (err) =>{
+  product.updateOne({Productid: id}, updatedProduct, (err) =>{
     if(err)
     {
       console.log(err);
@@ -106,7 +106,7 @@ router.post("/details/:id", (req, res, next) => {
 });
 
 // GET - process the delete
-router.get("/delete/:id", (req, res, next) => {
+router.get("/delete/", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
@@ -117,6 +117,11 @@ router.get("/delete/:id", (req, res, next) => {
       console.log(err);
       res.end(err);
     }
+
+    {
+      // refresh the book list
+      res.redirect('/index');
+ }
    
   });
   
